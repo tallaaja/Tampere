@@ -16,13 +16,14 @@ public class DetectLocationForAkem : MonoBehaviour {
     private float dLatitude1 = 60.16953f, dLongitude1 = 24.93390f;
     private float dLatitude2 = 60.169599f, dLongitude2 = 24.9343199f;
     private float dLatitude3 = 60.1681299f, dLongitude3 = 24.9351198f;
+    private float dLatitude4 = 60.3214234f, dlLongitude4 = 24.94545f;
     public float sLatitude, sLongitude;
     private bool ready = false;
     private float distanceFromTarget = 0.0004f;
     private float proximity = 0.001f;
     public Text text, UIText;
     private Vector2 deviceCoordinates;
-    private Vector2 targetCoordinates1, targetCoordinates2, targetCoordinates3;
+    private Vector2 targetCoordinates1, targetCoordinates2, targetCoordinates3, targetCoordinates4;
 
     
     // Use this for initialization
@@ -30,6 +31,7 @@ public class DetectLocationForAkem : MonoBehaviour {
         targetCoordinates1 = new Vector2(dLatitude1, dLongitude1);
         targetCoordinates2 = new Vector2(dLatitude2, dLongitude2);
         targetCoordinates3 = new Vector2(dLatitude3, dLongitude3);
+        targetCoordinates4 = new Vector2(dLatitude4, dlLongitude4);
 
         var firstPermission = AndroidPermissionsManager.RequestPermission("android.permission.ACCESS_FINE_LOCATION");
 
@@ -145,7 +147,7 @@ public class DetectLocationForAkem : MonoBehaviour {
                 ARObject.SetActive(true);
                 secondlocationPlayed = true;
                 Debug.Log("something");
-                text.text += "second location found";
+                text.text += "third location found";
                 UIText.text = "Tallipiha/Milavida/Näsinkallio/Tiitiäisen satupuisto Tallipiha on osa vanhaa Tamperetta, joka kasvoi 1800 - luvulla Finlaysonin puuvillatehtaan ympärille.Nykyään tallipiha on käsityöläispuotien ja Tallipihan Kahvilan tyyssija. Finlaysonin palatsi valmistui v. 1899 tehtaanpatruuna Nottbeckin pojan kodiksi ja toimii nykyään ravintolana. Tampereen Näsinpuistossa sijaitseva, täydellisesti entisöity Näsilinna avasi ovensa huhtikuussa 2015.Samalla avautui Museo Milavida, joka esittelee tehtaanomistaja von Nottbeckin perheen tarinaa sekä vaihtuvia muodin ja tyylin historiaan liittyviä näyttelyitä.Näsilinna toimi myös vuoden 1918 sisällissodan näyttämönä, ja rakennuksen hallinnasta käytiin useita taisteluita. Näsinpuistosta, mäen huipulta, löydät myös taiteen ja aktiviteetit yhdistävän Tiitiäisen Satupuiston.Leikkipuisto luotiin kunnianosoiteuksena runoilija Kirsi Kunnakselle, jonka satujen eläinhahmojen veistoksia on siroteltuna ympäri puistoa.";
             }
         }
