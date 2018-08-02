@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class DetectLocationForAkem : MonoBehaviour {
 
-    private bool firstlocationPlayed, secondlocationPlayed, thirdlocationPlayed = false;
+    private bool firstlocationPlayed, secondlocationPlayed, thirdlocationPlayed, fourthlocationPlayed = false;
 
-    public GameObject ARObject, exitObj;
+    public GameObject ARObject, exitObj, fourthlocationObj;
+    public VideoPlayer fourthlocationVideo;
 
     private bool enableByRequest = true;
     private bool running;
@@ -16,7 +18,7 @@ public class DetectLocationForAkem : MonoBehaviour {
     private float dLatitude1 = 60.16953f, dLongitude1 = 24.93390f;
     private float dLatitude2 = 60.169599f, dLongitude2 = 24.9343199f;
     private float dLatitude3 = 60.1681299f, dLongitude3 = 24.9351198f;
-    private float dLatitude4 = 60.3214234f, dlLongitude4 = 24.94545f;
+    private float dLatitude4 = 60.166030054f, dlLongitude4 = 24.93943993002f;
     public float sLatitude, sLongitude;
     private bool ready = false;
     private float distanceFromTarget = 0.0004f;
@@ -106,8 +108,8 @@ public class DetectLocationForAkem : MonoBehaviour {
     {
         deviceCoordinates = new Vector2(sLatitude, sLongitude);
 
-        
-        if(firstlocationPlayed == false)
+
+        if (firstlocationPlayed == false)
         {
             proximity = Vector2.Distance(targetCoordinates1, deviceCoordinates);
             if (proximity <= distanceFromTarget)
@@ -116,7 +118,6 @@ public class DetectLocationForAkem : MonoBehaviour {
                 StopAllCoroutines();
                 ARObject.SetActive(true);
                 firstlocationPlayed = true;
-                Debug.Log("something");
                 text.text += "first location found";
                 UIText.text = "Finlayson - Väinö Linnan aukio Skotlantilaissyntyisen James Finlaysonin v. 1820 perustama puuvillatehdas on ollut kaupungin tärkeimpiä teollisuuslaitoksia.Kutomorakennus Plevnassa(1877) sytytettiin pohjoisen Euroopan ensimmäinen sähkövalo v. 1882.Nykyään Finlaysonin alueella toimii mm. museoita, yrityksiä, ravintoloita, kauppoja, Aamulehden toimitus ja elokuvakeskus.";
             }
@@ -131,7 +132,6 @@ public class DetectLocationForAkem : MonoBehaviour {
                 StopAllCoroutines();
                 ARObject.SetActive(true);
                 secondlocationPlayed = true;
-                Debug.Log("something");
                 text.text += "second location found";
                 UIText.text = "Tampella/Vapriikki Tampellan alueen historia alkoi v. 1844 pienestä masuunista. Vuonna 1861 silloiset konepaja ja pellavatehdas yhdistyivät yritykseksi, joka myöhemmin tuli tunnetuksi Tampellana. Tampella valmisti mm.hiomakoneita, turbiineja, laivoja ja vetureita sekä pellavatuotteita. Nykyään Tampella toimii kotina mm.Museokeskus Vapriikille, joka tarjoaa nähtävää ja koettavaa koko perheelle. Vapriikissa on aina n. 10 näyttelyä, joiden skaala ulottuu kansainvälisistä näyttelyistä pysyviin ja paikallisiin teemoihin.Vapriikissa toimii myös Suomen Pelimuseo, joka esittelee suomalaista pelikulttuuria monipuolisesti. Kävijät pääsevät kokeilemaan eri aikakausien pelejä niiden oikeissa ympäristöissä.";
             }
@@ -145,15 +145,29 @@ public class DetectLocationForAkem : MonoBehaviour {
                 exitObj.SetActive(true);
                 StopAllCoroutines();
                 ARObject.SetActive(true);
-                secondlocationPlayed = true;
-                Debug.Log("something");
+                thirdlocationPlayed = true;
                 text.text += "third location found";
                 UIText.text = "Tallipiha/Milavida/Näsinkallio/Tiitiäisen satupuisto Tallipiha on osa vanhaa Tamperetta, joka kasvoi 1800 - luvulla Finlaysonin puuvillatehtaan ympärille.Nykyään tallipiha on käsityöläispuotien ja Tallipihan Kahvilan tyyssija. Finlaysonin palatsi valmistui v. 1899 tehtaanpatruuna Nottbeckin pojan kodiksi ja toimii nykyään ravintolana. Tampereen Näsinpuistossa sijaitseva, täydellisesti entisöity Näsilinna avasi ovensa huhtikuussa 2015.Samalla avautui Museo Milavida, joka esittelee tehtaanomistaja von Nottbeckin perheen tarinaa sekä vaihtuvia muodin ja tyylin historiaan liittyviä näyttelyitä.Näsilinna toimi myös vuoden 1918 sisällissodan näyttämönä, ja rakennuksen hallinnasta käytiin useita taisteluita. Näsinpuistosta, mäen huipulta, löydät myös taiteen ja aktiviteetit yhdistävän Tiitiäisen Satupuiston.Leikkipuisto luotiin kunnianosoiteuksena runoilija Kirsi Kunnakselle, jonka satujen eläinhahmojen veistoksia on siroteltuna ympäri puistoa.";
             }
         }
 
+        else if (fourthlocationPlayed == false)
+        {
+
+            proximity = Vector2.Distance(targetCoordinates4, deviceCoordinates);
+            if (proximity <= distanceFromTarget)
+            {
+                exitObj.SetActive(true);
+                StopAllCoroutines();
+                fourthlocationPlayed = true;
+                text.text += "fourth location found";
+                fourthlocationObj.SetActive(true);
+                fourthlocationVideo.Play();
+
+            }
 
 
 
+        }
     }
 }
