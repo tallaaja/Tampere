@@ -19,13 +19,24 @@ public class DetectLocationForAkem : MonoBehaviour {
     private float dLatitude2 = 60.169599f, dLongitude2 = 24.9343199f;
     private float dLatitude3 = 60.1681299f, dLongitude3 = 24.9351198f;
     private float dLatitude4 = 60.166030054f, dlLongitude4 = 24.93943993002f;
+    private float dLatitude5 = 60.1681299f, dLongitude5 = 24.9351198f;
+    private float dLatitude6 = 60.166030054f, dlLongitude6 = 24.93943993002f;
+    private float dLatitude7 = 60.1681299f, dLongitude7 = 24.9351198f;
+    private float dLatitude8 = 60.166030054f, dlLongitude8 = 24.93943993002f;
+    private float dLatitude9 = 60.1681299f, dLongitude9 = 24.9351198f;
+    private float dLatitude10 = 60.166030054f, dlLongitude10 = 24.93943993002f;
+    private float dLatitude11 = 60.1681299f, dLongitude11 = 24.9351198f;
+    private float dLatitude12 = 60.166030054f, dlLongitude12 = 24.93943993002f;
+    private float dLatitude13 = 60.1681299f, dLongitude13 = 24.9351198f;
+    private float dLatitude14 = 60.166030054f, dlLongitude14 = 24.93943993002f;
     public float sLatitude, sLongitude;
     private bool ready = false;
     private float distanceFromTarget = 0.0004f;
     private float proximity = 0.001f;
     public Text text, UIText;
     private Vector2 deviceCoordinates;
-    private Vector2 targetCoordinates1, targetCoordinates2, targetCoordinates3, targetCoordinates4;
+    private Vector2 targetCoordinates1, targetCoordinates2, targetCoordinates3, targetCoordinates4, targetCoordinates5, targetCoordinates6, targetCoordinates7, targetCoordinates8, targetCoordinates9,
+        targetCoordinates10, targetCoordinates11, targetCoordinates12, targetCoordinates13, targetCoordinates14;
 
     
     // Use this for initialization
@@ -34,6 +45,16 @@ public class DetectLocationForAkem : MonoBehaviour {
         targetCoordinates2 = new Vector2(dLatitude2, dLongitude2);
         targetCoordinates3 = new Vector2(dLatitude3, dLongitude3);
         targetCoordinates4 = new Vector2(dLatitude4, dlLongitude4);
+        targetCoordinates5 = new Vector2(dLatitude5, dLongitude5);
+        targetCoordinates6 = new Vector2(dLatitude6, dlLongitude6);
+        targetCoordinates7 = new Vector2(dLatitude7, dLongitude7);
+        targetCoordinates8 = new Vector2(dLatitude8, dlLongitude8);
+        targetCoordinates9 = new Vector2(dLatitude9, dLongitude9);
+        targetCoordinates10 = new Vector2(dLatitude10, dlLongitude10);
+        targetCoordinates11 = new Vector2(dLatitude11, dLongitude11);
+        targetCoordinates12 = new Vector2(dLatitude12, dlLongitude12);
+        targetCoordinates13 = new Vector2(dLatitude13, dLongitude13);
+        targetCoordinates14 = new Vector2(dLatitude14, dlLongitude14);
 
         var firstPermission = AndroidPermissionsManager.RequestPermission("android.permission.ACCESS_FINE_LOCATION");
 

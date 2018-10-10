@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2017
+# Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tampere", "Tampere.csproj", "{EDDCBA9E-1480-C2D1-EC68-BFDEC0FF678E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tampere.Editor", "Tampere.Editor.csproj", "{DB3DDE05-EE7E-D499-7A93-369FA1C52613}"
