@@ -361,7 +361,9 @@
     <Compile Include="Assets\GoogleARCore\SDK\Scripts\XPTrackingState.cs" />
     <Compile Include="Assets\Scripts\AddLocationsToList.cs" />
     <Compile Include="Assets\Scripts\ARController.cs" />
+    <Compile Include="Assets\Scripts\CameraHandler.cs" />
     <Compile Include="Assets\Scripts\DetectLocationForAkem.cs" />
+    <Compile Include="Assets\Scripts\DetectLocationOwnRoute.cs" />
     <Compile Include="Assets\Scripts\GridVisualizer.cs" />
   </ItemGroup>
   <ItemGroup>
