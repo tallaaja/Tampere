@@ -13,7 +13,7 @@ public class ARController : MonoBehaviour {
 
     private List<TrackedPlane> m_NewTrackedPlanes = new List<TrackedPlane>();
     public GameObject GridPrefab;
-    public GameObject portal;
+    public GameObject Soldier;
     public GameObject ARCamera;
     public Button ExitButton;
     Anchor anchor;
@@ -30,7 +30,7 @@ public class ARController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        portal.SetActive(false);
+        Soldier.SetActive(false);
         ExitButton.onClick.AddListener(DestroyARCore);
 	}
 
@@ -38,7 +38,7 @@ public class ARController : MonoBehaviour {
     {
         ARCoreSession.Destroy(anchor);
         ARCoreSession.DestroyImmediate(anchor);
-        portal.SetActive(false);
+        Soldier.SetActive(false);
         text.text += "anchor destroy";
     }
 
@@ -79,22 +79,22 @@ public class ARController : MonoBehaviour {
 
 
                 //enable the portal
-                portal.SetActive(true);
+                Soldier.SetActive(true);
 
                 //anchor
                 anchor = hit.Trackable.CreateAnchor(hit.Pose);
 
                 //set the portal positioin
-                portal.transform.position = hit.Pose.position;
-                portal.transform.rotation = hit.Pose.rotation;
+                Soldier.transform.position = hit.Pose.position;
+                Soldier.transform.rotation = hit.Pose.rotation;
 
                 Vector3 camerePosition = ARCamera.transform.position;
 
                 camerePosition.y = hit.Pose.position.y;
 
-                portal.transform.LookAt(camerePosition, portal.transform.up);
+                Soldier.transform.LookAt(camerePosition, Soldier.transform.up);
 
-                portal.transform.parent = anchor.transform;
+                Soldier.transform.parent = anchor.transform;
 
             }
             

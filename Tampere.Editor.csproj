@@ -321,7 +321,13 @@
     <None Include="Assets\GoogleARCore\Examples\Common\Materials\Shaders\PointCloud.shader" />
     <None Include="Assets\GoogleARCore\Examples\ComputerVision\Materials\EdgeDetectionBackground.shader" />
     <None Include="Assets\GoogleARCore\SDK\Materials\ARBackground.shader" />
+    <None Include="Assets\Materials\NewUnlitShader 1.shader" />
+    <None Include="Assets\Materials\UUsi matsku\NewUnlitShader 1.shader" />
     <None Include="Assets\PlayServicesResolver\Editor\play-services-resolver_v1.2.64.0.txt" />
+    <None Include="Assets\Shaders\PortalWindow.shader" />
+    <None Include="Assets\Shaders\SpecularStencilFilter.shader" />
+    <None Include="Assets\Shaders\StandardStencilFilter.shader" />
+    <None Include="Assets\Shaders\StencilFilter.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
