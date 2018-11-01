@@ -63,7 +63,6 @@ public class DetectLocationForAkem : MonoBehaviour {
         {
             text.text += "null";
         }
-
         firstPermission.WaitForCompletion();
 
         StartCoroutine(getLocation());

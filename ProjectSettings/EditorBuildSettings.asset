@@ -11,3 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tampere.unity
     guid: be21847f08674a7418cf4e49ec6532f8
+  - enabled: 1
+    path: Assets/Scenes/TampereENG.unity
+    guid: 68891800751413a4897b92393e1b92d2
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 60969cbe2acf63047bde36f062a5e7f8
