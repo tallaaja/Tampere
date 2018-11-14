@@ -3,14 +3,14 @@ using System.Collections;
 
 public class CameraHandler : MonoBehaviour
 {
-
-    private static readonly float PanSpeed = 50f;
+    RaycastHit2D hit;
+    private static readonly float PanSpeed = 200f;
     private static readonly float ZoomSpeedTouch = 0.1f;
     private static readonly float ZoomSpeedMouse = 0.5f;
 
-    private static readonly float[] BoundsX = new float[] { -100f, 100f };
-    private static readonly float[] BoundsZ = new float[] { -100f, -100f };
-    private static readonly float[] ZoomBounds = new float[] { 10f, 100f };
+    private static readonly float[] BoundsX = new float[] { -6000f, 8000f };
+    private static readonly float[] BoundsY = new float[] { -6000f, 8000f };
+    private static readonly float[] ZoomBounds = new float[] { 110f, 220f };
 
     private Camera cam;
 
@@ -39,6 +39,7 @@ public class CameraHandler : MonoBehaviour
 
     void HandleTouch()
     {
+        
         switch (Input.touchCount)
         {
 
@@ -50,6 +51,7 @@ public class CameraHandler : MonoBehaviour
                 Touch touch = Input.GetTouch(0);
                 if (touch.phase == TouchPhase.Began)
                 {
+                    //hit = Physics2D.Raycast(touch.position, Vector2.zero);
                     lastPanPosition = touch.position;
                     panFingerId = touch.fingerId;
                 }
@@ -88,6 +90,9 @@ public class CameraHandler : MonoBehaviour
 
     void HandleMouse()
     {
+        // Converting Mouse Pos to 2D(vector2) World Pos
+        Vector2 rayPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).y, Camera.main.ScreenToWorldPoint(Input.mousePosition).x);
+        RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.zero, 0f);
         // On mouse down, capture it's position.
         // Otherwise, if the mouse is still down, pan the camera.
         if (Input.GetMouseButtonDown(0))
@@ -96,7 +101,8 @@ public class CameraHandler : MonoBehaviour
         }
         else if (Input.GetMouseButton(0))
         {
-            PanCamera(Input.mousePosition);
+
+             PanCamera(Input.mousePosition);
         }
 
         // Check for scrolling to zoom the camera
@@ -108,7 +114,7 @@ public class CameraHandler : MonoBehaviour
     {
         // Determine how much to move the camera
         Vector3 offset = cam.ScreenToViewportPoint(lastPanPosition - newPanPosition);
-        Vector3 move = new Vector3(offset.x * PanSpeed, offset.y * PanSpeed, 0);
+        Vector3 move = new Vector3(offset.x * PanSpeed, 0, offset.y * PanSpeed);
 
         // Perform the movement
         transform.Translate(move, Space.World);
@@ -116,7 +122,7 @@ public class CameraHandler : MonoBehaviour
         // Ensure the camera remains within bounds.
         Vector3 pos = transform.position;
         pos.x = Mathf.Clamp(transform.position.x, BoundsX[0], BoundsX[1]);
-        pos.z = Mathf.Clamp(transform.position.z, BoundsZ[0], BoundsZ[1]);
+        pos.y = Mathf.Clamp(transform.position.y, BoundsY[0], BoundsY[1]);
         transform.position = pos;
 
         // Cache the position

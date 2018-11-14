@@ -6,16 +6,17 @@ using UnityEngine.Video;
 
 public class DetectLocationOwnRoute : MonoBehaviour
 {
-
+    public GameObject map, locationprovider;
     private bool running;
     private bool enableByRequest = true;
     private int maxWait = 10;
-    public Text text;
+    public Text console;
     private bool ready = false;
     private float proximity = 0.001f;
     private Vector2 deviceCoordinates;
     private float distanceFromTarget = 0.0004f;
 
+    public List<int> numberOfThisLocation = new List<int>();
     //public Button[] locationbuttons;
 
     public List<GameObject> locations = new List<GameObject>();
@@ -24,9 +25,9 @@ public class DetectLocationOwnRoute : MonoBehaviour
     private int number;
     private int i = 0;
     private int k = 1;
-    public AddLocationsToList addlocationsToList;
+    //public AddLocationsToList addlocationsToList;
 
-    private List<Vector2> listofCoordinates = new List<Vector2>();
+    public static List<Vector2> listofCoordinates = new List<Vector2>();
 
 
     // Use this for initialization
@@ -35,6 +36,7 @@ public class DetectLocationOwnRoute : MonoBehaviour
         exitButton.onClick.AddListener(ExitButtonPressed);   
 
     }
+
 
     void ExitButtonPressed()
     {
@@ -52,11 +54,11 @@ public class DetectLocationOwnRoute : MonoBehaviour
 
     public void letsStartGps()
     {
-        for(int j = 0; j<addlocationsToList.locations.Count; j++)
+        /*for(int j = 0; j<addlocationsToList.locations.Count; j++)
         {
             listofCoordinates.Add(addlocationsToList.returnCoordinates(addlocationsToList.locations[j]));
             Debug.Log(listofCoordinates[j].ToString("F6"));
-        }
+        }*/
 
         
         StartCoroutine(getLocation());
@@ -104,7 +106,7 @@ public class DetectLocationOwnRoute : MonoBehaviour
         }
         else
         {
-            text.text ="\nMy Location: " + service.lastData.latitude + ", " + service.lastData.longitude;
+            //console.text ="\nMy Location: " + service.lastData.latitude + ", " + service.lastData.longitude;
             sLatitude = service.lastData.latitude;
             sLongitude = service.lastData.longitude;
         }
@@ -120,25 +122,42 @@ public class DetectLocationOwnRoute : MonoBehaviour
 
 
 
+
     public void startCalculate()
     {
+        
         deviceCoordinates = new Vector2(sLatitude, sLongitude);
 
+        if (listofCoordinates.Count == 0) Debug.Log("ei oo yhtään");
         //locations[addlocationsToList.locations[0]-1].SetActive(true);
-        //Debug.Log(addlocationsToList.locations[0]-1);
-        //targetcoordinates = addlocationsToList.returnCoordinates(addlocationsToList.locations[j]);
-        text.text += "calculating";
 
-        proximity = Vector2.Distance(listofCoordinates[0], deviceCoordinates);
-
-        if (proximity <= distanceFromTarget)
+        else
         {
-            StopAllCoroutines();
-            locations[addlocationsToList.locations[i]-1].SetActive(true);
-            text.text += "now we are in " + k +" location" + listofCoordinates[0].ToString("F6");
-            listofCoordinates.Remove(listofCoordinates[0]);
-            k++;
-            i++;
+            Debug.Log(listofCoordinates[0]);
+            //targetcoordinates = addlocationsToList.returnCoordinates(addlocationsToList.locations[j]);
+            console.text += "calculating " + (listofCoordinates[0].ToString("F6"));
+
+            proximity = Vector2.Distance(listofCoordinates[0], deviceCoordinates);
+
+            console.text = proximity.ToString() + " || " + distanceFromTarget.ToString();
+
+            if (proximity <= distanceFromTarget)
+            {
+                console.text = "perskeles";
+                StopAllCoroutines();
+                // TODO 
+                //
+                //
+                locations[numberOfThisLocation[i]].SetActive(true);
+                map.SetActive(false);
+                locationprovider.SetActive(false);
+                console.text = "now we are in " + k + " location" + listofCoordinates[0].ToString("F6");
+                listofCoordinates.Remove(listofCoordinates[0]);
+                k++;
+                i++;
+                //numberOfThisLocation++;
+
+            }
         }
 
     }
